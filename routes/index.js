@@ -11,7 +11,7 @@ if (!apiKey || !secret) {
   console.error('');
   console.error('Missing TOKBOX_API_KEY or TOKBOX_SECRET');
   console.error('Find the appropriate values for these by logging into your TokBox Dashboard at: https://tokbox.com/account/#/');
-  console.error('Then add them to ', path.resolve('.env'), 'or as environment variables' );
+  console.error('Then add them to ', path.resolve('.env'), 'or as environment variables');
   console.error('');
   console.error('=========================================================================================================');
   process.exit();
@@ -98,7 +98,13 @@ router.get('/room/:name', function (req, res) {
 router.post('/archive/start', function (req, res) {
   var json = req.body;
   var sessionId = json.sessionId;
-  opentok.startArchive(sessionId, { name: findRoomFromSessionId(sessionId) }, function (err, archive) {
+  opentok.startArchive(
+    sessionId, 
+    { 
+      name: findRoomFromSessionId(sessionId),
+      outputMode: 'individual'
+    }, 
+    function (err, archive) {
     if (err) {
       console.error('error in startArchive');
       console.error(err);
