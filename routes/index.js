@@ -102,7 +102,7 @@ router.post('/archive/start', function (req, res) {
     sessionId, 
     { 
       name: findRoomFromSessionId(sessionId),
-      outputMode: 'individual'
+      // outputMode: 'individual'
     }, 
     function (err, archive) {
     if (err) {
